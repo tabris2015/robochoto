@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/opt/ros/kinetic/include",
+                    "/home/pepe/catkin_ws/src/arduinoday/include",
+                    "/home/pepe/catkin_ws/src/robochoto/include",
+                    "/home/pepe/catkin_ws/src/minesweeper/include",
+                    "/usr/include"
+                ]
+            },
+            "includePath": [
+                "/opt/ros/kinetic/include",
+                "/home/pepe/catkin_ws/src/arduinoday/include",
+                "/home/pepe/catkin_ws/src/robochoto/include",
+                "/home/pepe/catkin_ws/src/minesweeper/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
