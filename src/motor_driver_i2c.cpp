@@ -27,14 +27,16 @@ bool MotorDriverI2c::SetUnicycleVelocities(float linear, float angular)
     // request write (1)
     m_settings->HALWrite(address_, req_byte_, 0, NULL, error_buffer_);
     // write register index (1)
-    m_settings->HALWrite(address_, linear_index_, 4, (unsigned char *)(&linear_bytes_), error_buffer_);
+    m_settings->HALWrite(address_, linear_index_, 0, NULL, error_buffer_);
+
+    m_settings->HALWrite(address_, *((unsigned char *)(&linear_bytes_)), 3, (unsigned char *)(&linear_bytes_) + 1, error_buffer_);
     /// ANGULAR
     // request write (1)
     m_settings->HALWrite(address_, req_byte_, 0, NULL, error_buffer_);
-    m_settings->HALWrite(address_, angular_index_, 4, (unsigned char *)(&angular_bytes_), error_buffer_);
-    
     // write register index (1)
-    
+    m_settings->HALWrite(address_, angular_index_, 0, NULL, error_buffer_);
+
+    m_settings->HALWrite(address_, *((unsigned char *)(&angular_bytes_)), 3, (unsigned char *)(&angular_bytes_) + 1, error_buffer_);
     return true;
 }
 
