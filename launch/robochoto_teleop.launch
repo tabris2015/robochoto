@@ -1,0 +1,22 @@
+<launch>
+
+        
+    <!-- Publish wheel odometry from MCU encoder data -->
+    <arg name="dev" default="/dev/input/js0" />
+    <node pkg="joy" type="joy_node" name="joy" ns="robot">
+        <param name="dev" value="$(arg dev)" />
+    </node>
+
+    <node pkg="teleop_twist_joy" type="teleop_node" name="twist" ns="robot">
+        <param name="axis_linear" value="4" />
+        <param name="scale_linear" value="1.0" />
+        <param name="axis_angular" value="0" />
+        <param name="scale_angular" value="1.0" />
+    </node>
+    
+    <node pkg="robochoto" type="i2c_sensors" name="i2c_sensors_node" output="screen">
+        <param name="calibration_file_path" value="$(find robochoto)/config"/>
+        <param name="calibration_file_name" value="RTIMULib" />
+        <param name="frame_id" value="imu"/>
+    </node>
+</launch>
