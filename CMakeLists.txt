@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,10 +104,11 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES robochoto
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  INCLUDE_DIRS include
+  LIBRARIES robochoto
+  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs
 #  DEPENDS system_lib
+
 )
 
 ###########
@@ -117,6 +119,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
+  "include/robochoto"
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -135,8 +138,20 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/robochoto_node.cpp)
 
+# ---- joy control
+
 add_executable(joy_control src/joy_control.cpp)
 target_link_libraries(joy_control ${catkin_LIBRARIES})
+
+# ---- i2c sensors
+add_executable(i2c_sensors 
+              src/i2c_sensors.cpp
+              src/motor_driver_i2c.cpp)
+target_link_libraries(i2c_sensors 
+                      
+                      ${catkin_LIBRARIES}
+                      RTIMULib    # libreria para la IMU
+                      )
 
 
 ## Rename C++ executable without prefix
