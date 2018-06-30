@@ -1,0 +1,8 @@
+<launch>
+<node pkg="robochoto" type="i2c_sensors" name="i2c_sensors_node" output="screen">
+        <param name="calibration_file_path" value="$(find robochoto)/config"/>
+        <param name="calibration_file_name" value="RTIMULib" />
+        <param name="frame_id" value="imu"/>
+    </node>
+
+    </launch>
